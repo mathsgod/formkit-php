@@ -26,7 +26,7 @@ echo json_encode($schema, JSON_PRETTY_PRINT);
 ```
 
 
-### Registering Custom Vue Components
+### Registering custom Vue components
 
 ```php
 
@@ -38,7 +38,7 @@ echo json_encode($schema, JSON_PRETTY_PRINT);
 
 ```
 
-### Registering FormKitInput Components
+### Registering custom FormKit input components
 
 ```php
 $schema = new FormKit\Schema();

@@ -1,8 +1,8 @@
 <?php
 
-namespace FormKit\Input;
+namespace FormKit\Inputs;
 
-class Text extends \FormKit\FormKit
+class Text extends \FormKit\FormKitInputs
 {
     public function maxLength(int $val)
     {

@@ -18,7 +18,7 @@ class Schema extends DOMDocument implements JsonSerializable
         parent::__construct("1.0", "utf-8");
         $this->formatOutput = false;
 
-        $this->registerClass("form-kit", FormKit::class);
+        $this->registerClass("form-kit", FormKitInputs::class);
         $this->registerClass("form-kit-schema", FormKitSchema::class);
     }
 
@@ -40,7 +40,7 @@ class Schema extends DOMDocument implements JsonSerializable
             if ($node->tagName === "form-kit") {
                 $typeClass = $this->inputClasses[$node->attributes->getNamedItem("type")->nodeValue];
                 if ($typeClass) {
-                    $this->registerNodeClass(DOMElement::class, \FormKit\Input\Text::class);
+                    $this->registerNodeClass(DOMElement::class,$typeClass);
                     $n = parent::createElement($node->tagName);
                 } else {
                     $n = $this->createElement($node->tagName);

@@ -1,7 +1,6 @@
 <?php
 
-namespace FormKit;
-
+namespace FormKit\Inputs;
 class Email extends \FormKit\FormKitInputs
 {
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace FormKit;
+namespace FormKit\Inputs;
 
 class Date extends \FormKit\FormKitInputs
 {

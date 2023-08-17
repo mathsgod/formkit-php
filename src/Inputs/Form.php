@@ -1,7 +1,6 @@
 <?php
 
-namespace FormKit;
-
+namespace FormKit\Inputs;
 class Form extends \FormKit\FormKitInputs
 {
     /**

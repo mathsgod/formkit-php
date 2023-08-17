@@ -26,4 +26,16 @@ echo json_encode($schema, JSON_PRETTY_PRINT);
 ```
 
 
+### Registering Custom Vue Components
+
+```php
+
+$schema = new FormKit\Schema();
+$schema->registerClass("q-card", FormKit\Component::class);
+$schema->appendHTML("<q-card flat>Hello</q-card>");
+
+echo json_encode($schema, JSON_PRETTY_PRINT);
+
+```
+
 

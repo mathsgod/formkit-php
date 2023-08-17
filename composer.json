@@ -1,0 +1,16 @@
+{
+    "name": "mathsgod/formkit-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raymond Chong",
+            "email": "mathsgod@yahoo.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "FormKit\\": "src"
+        }
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 
 namespace FormKit\Inputs;
-class Email extends \FormKit\FormKitInputs
+class File extends \FormKit\FormKitInputs
 {
     /**
      * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept

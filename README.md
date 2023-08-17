@@ -70,3 +70,25 @@ $node->setLabel("World");
 echo json_encode($schema, JSON_PRETTY_PRINT);
 
 ```
+
+
+### Append child nodes
+
+```php
+$schema = new FormKit\Schema();
+$e = $schema->appendHTML("<div></div>")[0];
+$e->append($schema->createElement("div", "hello"));
+echo json_encode($schema, JSON_PRETTY_PRINT);
+
+```
+
+### Append child nodes from HTML
+
+```php
+$schema = new FormKit\Schema();
+$e = $schema->appendHTML("<div></div>")[0];
+$e->appendHTML("<div>hello</div>");
+echo json_encode($schema, JSON_PRETTY_PRINT);
+
+```
+    

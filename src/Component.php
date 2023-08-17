@@ -8,6 +8,17 @@ use JsonSerializable;
 
 class Component extends DOMElement implements JsonSerializable
 {
+    public function appendHTML(string $html): array
+    {
+        /** @var Schema $schema */
+        $schema = $this->ownerDocument;
+        $nodes = $schema->appendHTML($html);
+        foreach ($nodes as $node) {
+            $this->appendChild($node);
+        }
+        return $nodes;
+    }
+
     public function jsonSerialize()
     {
         $props = [];

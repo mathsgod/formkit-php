@@ -42,7 +42,7 @@ echo json_encode($schema, JSON_PRETTY_PRINT);
 
 ```php
 $schema = new FormKit\Schema();
-$schema->registerInput("my-input", FormKit\FormKitInputs::class);
+$schema->registerInputClass("my-input", FormKit\FormKitInputs::class);
 $schema->appendHTML("<form-kit label='My custom input' type='my-input'/>");
 ```
 

@@ -2,7 +2,6 @@
 
 namespace FormKit\Inputs;
 
-
 class Checkbox extends \FormKit\FormKitInputs
 {
 

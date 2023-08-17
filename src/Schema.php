@@ -28,6 +28,9 @@ class Schema extends DOMDocument implements JsonSerializable
         $this->registerInputClass("color", Inputs\Color::class);
         $this->registerInputClass("date", Inputs\Date::class);
         $this->registerInputClass("datetime-local", Inputs\DatetimeLocal::class);
+        $this->registerInputClass("email", Inputs\Email::class);
+        $this->registerInputClass("file", Inputs\File::class);
+        $this->registerInputClass("form", Inputs\Form::class);
     }
 
     public function createElement(string $localName, string $value = '')

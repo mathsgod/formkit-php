@@ -47,3 +47,26 @@ $schema->appendHTML("<form-kit label='My custom input' type='my-input'/>");
 ```
 
 
+### Custom component class
+
+```php
+
+class QBtn extends FormKit\Component
+{
+
+    public function setLabel($label)
+    {
+        $this->setAttribute("label", $label);
+    }
+}
+
+$schema = new FormKit\Schema();
+$schema->registerClass("q-btn", QBtn::class);
+$node=$schema->appendHTML("<q-btn label='Hello'/>")[0];
+
+//change label
+$node->setLabel("World");
+
+echo json_encode($schema, JSON_PRETTY_PRINT);
+
+```

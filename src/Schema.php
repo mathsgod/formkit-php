@@ -41,7 +41,14 @@ class Schema extends DOMDocument implements JsonSerializable
         $this->registerInputClass("range", Inputs\Range::class);
         $this->registerInputClass("search", Inputs\Search::class);
         $this->registerInputClass("select", Inputs\Select::class);
+        $this->registerInputClass("submit", Inputs\Submit::class);
+        $this->registerInputClass("tel", Inputs\Tel::class);
+        $this->registerInputClass("textarea", Inputs\Textarea::class);
+        $this->registerInputClass("time", Inputs\Time::class);
+        $this->registerInputClass("url", Inputs\Url::class);
+        $this->registerInputClass("week", Inputs\Week::class);
     }
+
 
     public function createElement(string $localName, string $value = '')
     {

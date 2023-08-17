@@ -2,7 +2,7 @@
 
 namespace FormKit\Inputs;
 
-class Text extends \FormKit\FormKitInputs
+class Tel extends \FormKit\FormKitInputs
 {
     public function maxlength(int $val)
     {

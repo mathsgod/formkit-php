@@ -18,11 +18,68 @@ composer require mathsgod/formkit-php
 ```php
 
 $schema = new FormKit\Schema();
-
 $schema->appendHTML("<form-kit label='hello' type='text'/>");
+echo json_encode($schema, JSON_PRETTY_PRINT);
+```
+
+output:
+
+```json
+[
+    {
+        "$formkit": "text",
+        "label": "hello"
+    }
+]
+```
+
+### Simple element 
+
+```php
+
+$schema = new FormKit\Schema();
+$schema->appendElement("div")->appendElement("span")->appendHTML("hello");
+echo json_encode($schema, JSON_PRETTY_PRINT);
+```
+
+output:
+
+```json
+[
+    {
+        "$el": "div",
+        "children": [
+            {
+                "$el": "span",
+                "children": [
+                    "hello"
+                ]
+            }
+        ]
+    }
+]
+```
+
+### Component class
+
+```php
+
+$schema = new FormKit\Schema();
+$schema->appendComponent("q-card");
 
 echo json_encode($schema, JSON_PRETTY_PRINT);
+    
+```
 
+output:
+
+```json
+[
+    {
+        "$cmp": "q-card",
+        "props": []
+    }
+]
 ```
 
 
@@ -47,6 +104,7 @@ $schema->appendHTML("<form-kit label='My custom input' type='my-input'/>");
 ```
 
 
+
 ### Custom component class
 
 ```php
@@ -62,7 +120,7 @@ class QBtn extends FormKit\Component
 
 $schema = new FormKit\Schema();
 $schema->registerClass("q-btn", QBtn::class);
-$node=$schema->appendHTML("<q-btn label='Hello'/>")[0];
+$node=$schema->appendHTML("<q-btn label='Hello'/>")[0]; //$node=$schema->appendComponent("q-btn");
 
 //change label
 $node->setLabel("World");

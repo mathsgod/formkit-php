@@ -49,6 +49,28 @@ class Schema extends DOMDocument implements JsonSerializable
         $this->registerInputClass("week", Inputs\Week::class);
     }
 
+    public function appendElement(string $name): SchemaDOMNode
+    {
+        return $this->appendHTML("<{$name}></{$name}>")[0];
+    }
+
+    public function appendComponent(string $name): Component
+    {
+        //check to kebab case
+        $name = strtolower(preg_replace('/(?<!^)[A-Z]/', '-$0', $name));
+
+        //if component is not registered, use default
+        if (!$this->hasNodeClass($name)) {
+            $this->registerClass($name, Component::class);
+        }
+
+        return $this->appendHTML("<{$name}></{$name}>")[0];
+    }
+
+    public function hasNodeClass(string $tagName): bool
+    {
+        return isset($this->nodeClasses[$tagName]);
+    }
 
     public function createElement(string $localName, string $value = '')
     {

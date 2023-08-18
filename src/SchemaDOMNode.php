@@ -8,26 +8,20 @@ use JsonSerializable;
 class SchemaDOMNode extends Schema\Node implements JsonSerializable
 {
 
-    public function appendHTML(string $html): array
-    {
-        /** @var Schema $schema */
-        $schema = $this->ownerDocument;
-        $nodes = $schema->appendHTML($html);
-        foreach ($nodes as $node) {
-            $this->appendChild($node);
-        }
-        return $nodes;
-    }
-
     public function jsonSerialize()
     {
         $attrs = [];
 
         foreach ($this->attributes as $attr) {
+            if ($attr->name[0] == ":") {
+                //decode json
+                $props[substr($attr->name, 1)] = json_decode($attr->value);
+                continue;
+            }
             $attrs[$attr->name] = $attr->value === "" ? true : $attr->value;
         }
 
-        return [
+        $data = [
             '$el' => $this->tagName,
             "attrs" => $attrs,
             "children" => array_map(function ($node) {
@@ -37,5 +31,17 @@ class SchemaDOMNode extends Schema\Node implements JsonSerializable
                 return $node;
             }, iterator_to_array($this->childNodes))
         ];
+
+        //if no children, remove children key
+        if (count($data["children"]) === 0) {
+            unset($data["children"]);
+        }
+
+        //if no attrs, remove attrs key
+        if (count($data["attrs"]) === 0) {
+            unset($data["attrs"]);
+        }
+
+        return $data;
     }
 }

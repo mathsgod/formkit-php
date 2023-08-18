@@ -256,6 +256,7 @@ output:
 [
     {
         "$formkit": "group",
+        "label": "Group",
         "value": {
             "cities": [
                 "Hong Kong",
@@ -266,13 +267,13 @@ output:
         "children": [
             {
                 "$el": "div",
-                "v-for": [
+                "children": [
+                    "$item"
+                ],
+                "for": [
                     "item",
                     "key",
                     "$value.cities"
-                ],
-                "children": [
-                    "$item"
                 ]
             }
         ]

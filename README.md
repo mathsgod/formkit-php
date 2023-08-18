@@ -60,12 +60,13 @@ output:
 ]
 ```
 
-### Component class
+### Component
 
 ```php
 
 $schema = new FormKit\Schema();
-$schema->appendComponent("q-card");
+$card=$schema->appendComponent("q-card");
+$card->setAttribute("flat","");
 
 echo json_encode($schema, JSON_PRETTY_PRINT);
     
@@ -77,7 +78,9 @@ output:
 [
     {
         "$cmp": "q-card",
-        "props": []
+        "props": {
+            "flat": true
+        }
     }
 ]
 ```
@@ -95,14 +98,42 @@ echo json_encode($schema, JSON_PRETTY_PRINT);
 
 ```
 
+output:
+
+```json
+[
+    {
+        "$cmp": "q-card",
+        "props": {
+            "flat": true
+        },
+        "children": [
+            "Hello"
+        ]
+    }
+]
+```
+
+
 ### Registering custom FormKit input components
 
 ```php
 $schema = new FormKit\Schema();
 $schema->registerInputClass("my-input", FormKit\FormKitInputs::class);
 $schema->appendHTML("<form-kit label='My custom input' type='my-input'/>");
+echo json_encode($schema, JSON_PRETTY_PRINT);
 ```
 
+output:
+
+```json
+[
+    {
+        "$formkit": "my-input",
+        "label": "My custom input"
+    }
+]
+```
 
 
 ### Custom component class
@@ -129,6 +160,19 @@ echo json_encode($schema, JSON_PRETTY_PRINT);
 
 ```
 
+output:
+
+```json
+[
+    {
+        "$cmp": "q-btn",
+        "props": {
+            "label": "World"
+        }
+    }
+]
+```
+
 
 ### Append child nodes
 
@@ -140,6 +184,24 @@ echo json_encode($schema, JSON_PRETTY_PRINT);
 
 ```
 
+output:
+
+```json
+[
+    {
+        "$el": "div",
+        "children": [
+            {
+                "$el": "div",
+                "children": [
+                    "hello"
+                ]
+            }
+        ]
+    }
+]
+```
+
 ### Append child nodes from HTML
 
 ```php
@@ -148,5 +210,23 @@ $e = $schema->appendHTML("<div></div>")[0];
 $e->appendHTML("<div>hello</div>");
 echo json_encode($schema, JSON_PRETTY_PRINT);
 
+```
+
+output:
+
+```json
+[
+    {
+        "$el": "div",
+        "children": [
+            {
+                "$el": "div",
+                "children": [
+                    "hello"
+                ]
+            }
+        ]
+    }
+]
 ```
     

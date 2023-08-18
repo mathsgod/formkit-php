@@ -13,6 +13,8 @@ class Schema extends DOMDocument implements JsonSerializable
 {
     private $nodeClasses = [];
     private $inputClasses = [];
+    private $defaultDOMNode = SchemaDOMNode::class;
+
     public function __construct()
     {
         parent::__construct("1.0", "utf-8");
@@ -77,7 +79,7 @@ class Schema extends DOMDocument implements JsonSerializable
         if (isset($this->nodeClasses[$localName])) {
             $this->registerNodeClass(DOMElement::class, $this->nodeClasses[$localName]);
         } else {
-            $this->registerNodeClass(DOMElement::class, SchemaDOMNode::class);
+            $this->registerNodeClass(DOMElement::class, $this->defaultDOMNode);
         }
         return parent::createElement($localName, $value);
     }
@@ -126,6 +128,10 @@ class Schema extends DOMDocument implements JsonSerializable
         $this->inputClasses[$type] = $className;
     }
 
+    public function registerDefaultDOMNode(string $className)
+    {
+        $this->defaultDOMNode = $className;
+    }
 
     private $nodes = [];
 

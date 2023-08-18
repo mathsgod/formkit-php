@@ -2,11 +2,11 @@
 
 namespace FormKit;
 
-use DOMElement;
 use DOMText;
+use FormKit\Schema\Node;
 use JsonSerializable;
 
-class FormKitInputs  extends DOMElement implements JsonSerializable
+class FormKitInputs  extends Node implements JsonSerializable
 {
     public function appendHTML(string $html): array
     {

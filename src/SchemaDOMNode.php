@@ -42,6 +42,9 @@ class SchemaDOMNode extends Schema\Node implements JsonSerializable
             unset($data["attrs"]);
         }
 
+
+        $data = array_merge($data, parent::jsonSerialize());
+
         return $data;
     }
 }

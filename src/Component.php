@@ -39,6 +39,9 @@ class Component extends Schema\Node implements JsonSerializable
             unset($data["children"]);
         }
 
+
+        $data = array_merge($data, parent::jsonSerialize());
+
         return $data;
     }
 }

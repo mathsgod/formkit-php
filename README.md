@@ -229,4 +229,55 @@ output:
     }
 ]
 ```
+
+
+### Loops
+
+```php
+
+$group = $schema->appendHTML("<form-kit type='group'/>")[0];
+$group->setAttribute(":value", json_encode([
+    "cities" => ["Hong Kong", "Taiwan", "China"]
+]));
+
+$div = $group->appendElement("div");
+
+$div->for(["item", "key", '$value.cities']);
+
+$div->appendHTML('$item');
+
+echo json_encode($schema, JSON_PRETTY_PRINT);
+
+```
+
+output:
+
+```json
+[
+    {
+        "$formkit": "group",
+        "value": {
+            "cities": [
+                "Hong Kong",
+                "Taiwan",
+                "China"
+            ]
+        },
+        "children": [
+            {
+                "$el": "div",
+                "v-for": [
+                    "item",
+                    "key",
+                    "$value.cities"
+                ],
+                "children": [
+                    "$item"
+                ]
+            }
+        ]
+    }
+]
+```
+
     

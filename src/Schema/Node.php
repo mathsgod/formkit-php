@@ -5,9 +5,38 @@ namespace FormKit\Schema;
 use DOMElement;
 use FormKit\Component;
 use FormKit\SchemaDOMNode;
+use JsonSerializable;
 
-class Node extends DOMElement
+class Node extends DOMElement implements JsonSerializable
 {
+
+    protected $if;
+    protected $then;
+    protected $for;
+    protected $else;
+
+    public function jsonSerialize()
+    {
+        $data = [];
+
+        if ($this->if) {
+            $data["if"] = $this->if;
+        }
+
+        if ($this->then) {
+            $data["then"] = $this->then;
+        }
+
+        if ($this->for) {
+            $data["for"] = $this->for;
+        }
+
+        if ($this->else) {
+            $data["else"] = $this->else;
+        }
+
+        return $data;
+    }
 
     public function appendElement(string $name): SchemaDOMNode
     {
@@ -43,25 +72,25 @@ class Node extends DOMElement
 
     public function if(string $if)
     {
-        $this->setAttribute('if', $if);
+        $this->if = $if;
         return $this;
     }
 
     public function then(string|array $then)
     {
-        $this->setAttribute(':then', json_encode($then, JSON_UNESCAPED_UNICODE));
+        $this->then = $then;
         return $this;
     }
 
     public function for(array $for)
     {
-        $this->setAttribute(':for', json_encode($for, JSON_UNESCAPED_UNICODE));
+        $this->for = $for;
         return $this;
     }
 
     public function else(string|array $else)
     {
-        $this->setAttribute(':else', json_encode($else, JSON_UNESCAPED_UNICODE));
+        $this->else = $else;
         return $this;
     }
 }

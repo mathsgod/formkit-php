@@ -2,11 +2,10 @@
 
 namespace FormKit;
 
-use DOMElement;
 use DOMText;
 use JsonSerializable;
 
-class HTMLElement extends DOMElement implements JsonSerializable
+class SchemaDOMNode extends Schema\Node implements JsonSerializable
 {
 
     public function appendHTML(string $html): array
@@ -14,7 +13,7 @@ class HTMLElement extends DOMElement implements JsonSerializable
         /** @var Schema $schema */
         $schema = $this->ownerDocument;
         $nodes = $schema->appendHTML($html);
-        foreach($nodes as $node){
+        foreach ($nodes as $node) {
             $this->appendChild($node);
         }
         return $nodes;

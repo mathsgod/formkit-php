@@ -55,7 +55,7 @@ class Schema extends DOMDocument implements JsonSerializable
         if (isset($this->nodeClasses[$localName])) {
             $this->registerNodeClass(DOMElement::class, $this->nodeClasses[$localName]);
         } else {
-            $this->registerNodeClass(DOMElement::class, HTMLElement::class);
+            $this->registerNodeClass(DOMElement::class, SchemaDOMNode::class);
         }
         return parent::createElement($localName, $value);
     }

@@ -27,7 +27,7 @@ class Component extends Schema\Node implements JsonSerializable
         }
 
 
-        return [
+        $data = [
             '$cmp' => $this->tagName,
             "props" => $props,
             "children" => array_map(function ($node) {
@@ -37,5 +37,12 @@ class Component extends Schema\Node implements JsonSerializable
                 return $node;
             }, iterator_to_array($this->childNodes))
         ];
+
+        //if no children, remove children
+        if (count($data["children"]) === 0) {
+            unset($data["children"]);
+        }
+
+        return $data;
     }
 }

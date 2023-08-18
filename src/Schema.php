@@ -105,6 +105,8 @@ class Schema extends DOMDocument implements JsonSerializable
     }
 
 
+    private $nodes = [];
+
     public function appendHTML(string $html)
     {
         $option = 0;
@@ -122,7 +124,9 @@ class Schema extends DOMDocument implements JsonSerializable
 
         $nodes = [];
         foreach ($document->childNodes[0]->childNodes as $node) {
-            $nodes[] = $this->appendChild($this->importNode($node, true));
+            $n = $this->appendChild($this->importNode($node, true));
+            $nodes[] = $n;
+            $this->nodes[] = $n; //we need to keep a reference to the node to prevent it to change back to DOMElement
         }
         return $nodes;
     }

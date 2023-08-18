@@ -23,6 +23,12 @@ class Component extends Schema\Node implements JsonSerializable
         $props = [];
 
         foreach ($this->attributes as $attr) {
+            if ($attr->name[0] == ":") {
+                //decode json
+                $props[substr($attr->name, 1)] = json_decode($attr->value);
+                continue;
+            }
+
             $props[$attr->name] = $attr->value === "" ? true : $attr->value;
         }
 

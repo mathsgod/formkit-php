@@ -128,7 +128,7 @@ class Schema extends DOMDocument implements JsonSerializable
         $this->inputClasses[$type] = $className;
     }
 
-    public function registerDefaultDOMNode(string $className)
+    public function registerDefaultDOMNodeClass(string $className)
     {
         $this->defaultDOMNode = $className;
     }
